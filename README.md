@@ -1,3 +1,12 @@
+# Start
+
+```sh
+$ git clone https://github.com/JaysesS/Overview-of-web-vulnerabilities.git
+$ cd Overview-of-web-vulnerabilities
+$ python3 -m pip -r requirements.txt
+$ python3 run.py
+```
+
 # SQLi
 
 Код на сервере:
