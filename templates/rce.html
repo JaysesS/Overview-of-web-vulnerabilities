@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}RCE{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center mt-3">
+        <div class="col-5 block-center">
+            <form class="text-center border border-light p-5" action="/rce" method="POST">
+                <p class="h4 mb-4">Send your message and it will be saved on server!</p>
+                {{ form.message(placeholder="Note", id="defaultLoginFormEmail", class="form-control mb-4") }}
+                {{ form.submit(class="btn btn-secondary btn-block my-4") }}
+            </form>
+            <div class="mt-3">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-success" role="alert">
+                                {{ message|safe }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

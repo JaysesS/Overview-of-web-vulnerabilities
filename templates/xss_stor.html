@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}XSS{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center mt-3">
+        <div class="col-5 block-center">
+            <form class="text-center border border-light p-5" action="/xss_stor" method="POST">
+                <p class="h4 mb-4">Send Note!</p>
+                {{ form.username(placeholder="Username", id="defaultLoginFormEmail", class="form-control mb-4") }}
+                {{ form.note(placeholder="Note", id="defaultLoginFormEmail", class="form-control mb-4") }}
+                {{ form.submit(class="btn btn-secondary btn-block my-4") }}
+            </form>
+            <div class="mt-3">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-success" role="alert">
+                                {{ message|safe }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+        <div class="col-5 block-center">
+            <div>
+                {% for item in notes %}
+                    <div class="list-group mb-2">
+                        <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start active">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-2 h5">{{ item.username|safe }}</h5>
+                        </div>
+                        <p class="mb-2">{{ item.note|safe }}</p>
+                        </a>
+                    </div>
+                {% endfor %} 
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
